@@ -1,20 +1,12 @@
-import { Link, useLoaderData } from "remix";
+import { LoaderFunction, useLoaderData } from "remix";
+import { getStories, Story, StoryType } from "~/api.server";
 
-export const loader = async () => {
-  let res = await fetch("https://hacker-news.firebaseio.com/v0/topstories.json");
-  let ids = await res.json();
-
-  return Promise.all(
-    ids.slice(0, 10).map(async id => {
-        let storyRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
-        let story = await storyRes.json();
-        return story;
-      })
-  );
+export const loader : LoaderFunction = async () => {
+  return getStories(StoryType.TOP);
 }
 
 export default function Index() {
-  const stories = useLoaderData();
+  const stories = useLoaderData<Story[]>();
   return (
     <ul>
       {stories.map(story => (
