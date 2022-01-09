@@ -1,4 +1,5 @@
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -15,7 +16,7 @@ export const links = () => {
 }
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { title: "Remix News" };
 };
 
 export default function App() {
@@ -27,7 +28,17 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="py-1 px-5">
+        <nav className="block p-2 my-2">
+          <ul className="flex font-semibold">
+            <li className="mr-6">
+              <Link to="/" className="text-orange-500 hover:text-orange-300">Home</Link>
+            </li>
+            <li className="mr-6">
+              <Link to="/ask" className="text-orange-500 hover:text-orange-300">Ask HN</Link>
+            </li>
+          </ul>
+        </nav>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

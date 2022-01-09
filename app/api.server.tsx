@@ -24,7 +24,7 @@ export const getStories = async (type: StoryType) => {
     const ids = await res.json();
 
     return Promise.all(
-        ids.slice(0, 20).map(async (id: number) => {
+        ids.slice(0, 30).map(async (id: number) => {
             let storyRes = await fetch(`${BASE_URL}item/${id}.json`);
             let story: Story = await storyRes.json();
             return story;

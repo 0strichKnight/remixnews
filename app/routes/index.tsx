@@ -9,8 +9,9 @@ export default function Index() {
   const stories = useLoaderData<Story[]>();
   return (
     <ul>
-      {stories.map(story => (
+      {stories.map( (story, i) => (
         <li key={story.id}>
+          {i + 1} - 
           <a href={story.url} target="_blank" rel="noopener noreferrer">
             {story.title}
           </a>
